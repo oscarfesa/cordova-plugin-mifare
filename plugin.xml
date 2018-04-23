@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-mifare" version="0.2.3">
+    <name>Mifare</name>
+    <description>Mifare Cordova Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,mifare</keywords>
+    <js-module src="www/mifare.js" name="mifare">
+        <!--<runs /> -->
+        <clobbers target="MifarePlugin" />
+    </js-module>
+   
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MifarePlugin" >
+                <param name="android-package" value="com.paradigma.cordova.mifare.MifarePlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/com/paradigma/cordova/mifare/MifarePlugin.java"
+            target-dir="src/com/paradigma/cordova/mifare" />
+        <lib-file src="src/android/libs/reader.jar"/>
+
+        <resource-file src="src/android/jniLibs/armeabi/libserial_port.so" 
+            target="jniLibs/armeabi/libserial_port.so" />
+        <resource-file src="src/android/jniLibs/armeabi-v7a/libserial_port.so" 
+            target="jniLibs/armeabi-v7a/libserial_port.so" />
+        <resource-file src="src/android/jniLibs/x86/libserial_port.so" 
+            target="jniLibs/x86/libserial_port.so" />
+        
+        <info>
+               This plugin is only applicable for versions of cordova-android greater than 4.0. If you have a previous platform version, you do *not* need this plugin since the whitelist will be built in.
+        </info>
+    </platform>
+</plugin>

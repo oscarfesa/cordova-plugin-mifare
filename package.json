@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-mifare",
+  "version": "0.1.1",
+  "description": "Cordova Mifare Plugin",
+  "cordova": {
+    "id": "cordova-plugin-mifare",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "device",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Oscar Ferrer",
+  "license": "Apache 2.0"
+}
