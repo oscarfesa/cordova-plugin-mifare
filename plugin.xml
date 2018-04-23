@@ -6,7 +6,6 @@
     <license>Apache 2.0</license>
     <keywords>cordova,mifare</keywords>
     <js-module src="www/mifare.js" name="mifare">
-        <!--<runs /> -->
         <clobbers target="MifarePlugin" />
     </js-module>
    
@@ -30,7 +29,7 @@
             target="jniLibs/x86/libserial_port.so" />
         
         <info>
-               This plugin is only applicable for versions of cordova-android greater than 4.0. If you have a previous platform version, you do *not* need this plugin since the whitelist will be built in.
+               This plugin is only applicable for Paradigma Tablets used in Paradigma Spaces Project.
         </info>
     </platform>
 </plugin>
