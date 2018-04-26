@@ -46,14 +46,14 @@ public class MifarePlugin extends CordovaPlugin {
                     try {
                         // Set timeout
                         int timeout = args.length() != 0 ? args.getJSONObject(0).getInt("timeout") : TIMEOUT_SECONDS_DEFAULT;
-                        Log.d(TAG, "*** Before future.get()..." + timeout);
+                        Log.d(TAG, "Start looking for Mifare Card...");
                         future.get(timeout, TimeUnit.SECONDS); 
                     } catch (TimeoutException e) {
-                        Log.d(TAG, "Mifare timeout");
+                        Log.d(TAG, "Mifare timeout: no card read for  " + timeout + " seconds.");
                         PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Mifare timeout");
                         callbackContext.sendPluginResult(result);
                     } catch (Exception e) {
-                        Log.d(TAG, "Mifare error" + e.getMessage());
+                        Log.d(TAG, "Mifare error: " + e.getMessage());
                         PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Mifare error");
                         callbackContext.sendPluginResult(result);
                     } finally {
