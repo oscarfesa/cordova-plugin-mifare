@@ -8,7 +8,7 @@
     <js-module src="www/mifare.js" name="mifare">
         <clobbers target="MifarePlugin" />
     </js-module>
-   
+    
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="MifarePlugin" >
