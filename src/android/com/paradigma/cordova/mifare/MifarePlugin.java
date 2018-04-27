@@ -2,6 +2,7 @@ package com.paradigma.cordova.mifare;
 
 import org.apache.cordova.*;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONException;
 
 import com.rfid.reader.Reader;
@@ -45,14 +46,16 @@ public class MifarePlugin extends CordovaPlugin {
                         }
                     });
                     try {
-                        Log.d(TAG, "Start looking for Mifare Card...");
+                        Log.d(TAG, "Start listening to Mifare Card...");
                         future.get(timeout, TimeUnit.SECONDS); 
                     } catch (TimeoutException e) {
                         Log.d(TAG, "Mifare timeout");
-                        PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Mifare timeout");
+                        JSONObject resultMessage = new JSONObject("{'code': 1, 'message': 'Mifare timeout ('" + timeout + " seconds)' }");
+                        PluginResult result = new PluginResult(PluginResult.Status.ERROR, resultMessage);
                         callbackContext.sendPluginResult(result);
                     } catch (Exception e) {
                         Log.d(TAG, "Mifare error: " + e.getMessage());
+                        JSONObject resultMessage = new JSONObject("{'code': 2 , 'message': 'Mifare error: '" +  e.getMessage() + "'");
                         PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Mifare error");
                         callbackContext.sendPluginResult(result);
                     } finally {
