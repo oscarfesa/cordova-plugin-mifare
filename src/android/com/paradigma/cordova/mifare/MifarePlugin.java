@@ -9,8 +9,6 @@ import com.rfid.reader.Reader;
 import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.concurrent.*;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 public class MifarePlugin extends CordovaPlugin {
@@ -50,12 +48,22 @@ public class MifarePlugin extends CordovaPlugin {
                         future.get(timeout, TimeUnit.SECONDS); 
                     } catch (TimeoutException e) {
                         Log.d(TAG, "Mifare timeout");
-                        JSONObject resultMessage = new JSONObject("{'code': 1, 'message': 'Mifare timeout ('" + timeout + " seconds)' }");
+                        JSONObject resultMessage = null;
+                        try {
+                            resultMessage = new JSONObject("{'code': 1, 'message': 'Mifare timeout ('" + timeout + " seconds)' }");
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
                         PluginResult result = new PluginResult(PluginResult.Status.ERROR, resultMessage);
                         callbackContext.sendPluginResult(result);
                     } catch (Exception e) {
                         Log.d(TAG, "Mifare error: " + e.getMessage());
-                        JSONObject resultMessage = new JSONObject("{'code': 2 , 'message': 'Mifare error: '" +  e.getMessage() + "'");
+                        JSONObject resultMessage = null;
+                        try {
+                            resultMessage = new JSONObject("{'code': 2 , 'message': 'Mifare error: '" +  e.getMessage() + "'");
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
                         PluginResult result = new PluginResult(PluginResult.Status.ERROR, "Mifare error");
                         callbackContext.sendPluginResult(result);
                     } finally {
