@@ -50,7 +50,7 @@ public class MifarePlugin extends CordovaPlugin {
                         Log.d(TAG, "Mifare timeout");
                         JSONObject resultMessage = null;
                         try {
-                            resultMessage = new JSONObject("{'code': 1, 'message': 'Mifare timeout ('" + timeout + " seconds)' }");
+                            resultMessage = new JSONObject("{'code': 1, 'message': 'Mifare timeout (" + timeout + " seconds)' }");
                         } catch (JSONException e1) {
                             e1.printStackTrace();
                         }
