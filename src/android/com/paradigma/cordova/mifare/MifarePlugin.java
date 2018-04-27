@@ -27,7 +27,8 @@ public class MifarePlugin extends CordovaPlugin {
     
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-
+        // Configure timeout
+        final Integer timeout = args.length() != 0 ? args.getJSONObject(0).getInt("timeout") : TIMEOUT_SECONDS_DEFAULT;
         
         if (action.equals("readUID")) {
             cordova.getThreadPool().execute(new Runnable() {
@@ -44,9 +45,7 @@ public class MifarePlugin extends CordovaPlugin {
                         }
                     });
                     try {
-                        // Set timeout
                         Log.d(TAG, "Start looking for Mifare Card...");
-                        int timeout = args.length() != 0 ? args.getJSONObject(0).getInt("timeout") : TIMEOUT_SECONDS_DEFAULT;
                         future.get(timeout, TimeUnit.SECONDS); 
                     } catch (TimeoutException e) {
                         Log.d(TAG, "Mifare timeout");
