@@ -1,15 +1,16 @@
 # Cordova Plugin for Paradigma Cards (Mifare TypeA)
 
 Cordova Plugin that integrates NFC reader from Paradigma Tablets.
-This Pluging tries to read an UID from a Mifare Card. If a card is read the plugin returns the UID. In case the plugin cannot read a card for a number of seconds a timeout error is returned.
+This Plugin lets you read an UID from a Mifare Card (TypeA). 
+In case the plugin cannot read a card for a number of seconds a timeout error is returned.
 You can configure this timeout. 
 
 ## Installation
 
-To add this plugin to your Cordova Project remember you need to have a Paradigma Gitlab account. Then just type on the root path of your project.
+To add this plugin to your Cordova Project just type on the root path of your project.
 
 ```bash
-$ cordova plugin add git+ssh://git@git.paradigmadigital.com/iot/paradigma-spaces/cordova-plugin-mifare.git
+$ cordova plugin add https://github.com/oscarfesa/cordova-plugin-mifare.git
 ```
 
 ## Usage
@@ -31,8 +32,13 @@ You can configure your timeout (in seconds) using arguments as before. By defaul
 ### Error results
 In case an error ocurred a JSON result will be returned with an error code and an error message.
 
-```json
-{'code': int, 'message': 'string'}
+```javascript
+{'code': int, 'message': string}
+```
+
+Example:
+```javascript
+{'code': 1, 'message': 'Mifare timeout (20 seconds)'}
 ```
 
 Error list:
