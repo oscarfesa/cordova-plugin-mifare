@@ -14,15 +14,10 @@ import android.util.Log;
 public class MifarePlugin extends CordovaPlugin {
 
     public Reader reader = null;
-    private final ExecutorService readUIDExecutor;
     private static final String TAG = "MifarePlugin";
     private static final Integer TIMEOUT_SECONDS_DEFAULT = 10;
     private static final String DEVICE = "/dev/ttyS3"; // UART serial port
 
-    public MifarePlugin(){
-        super();
-       
-    }
     
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -32,7 +27,7 @@ public class MifarePlugin extends CordovaPlugin {
         if (action.equals("readUID")) {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
-                    readUIDExecutor= Executors.newSingleThreadExecutor();
+                    ExecutorService readUIDExecutor = Executors.newSingleThreadExecutor();
                     Future<String> future = readUIDExecutor.submit(new Callable() {
                         
                         public String call() throws Exception {
