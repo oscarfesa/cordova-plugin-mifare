@@ -21,7 +21,7 @@ public class MifarePlugin extends CordovaPlugin {
 
     public MifarePlugin(){
         super();
-        readUIDExecutor= Executors.newSingleThreadExecutor();
+       
     }
     
     @Override
@@ -32,7 +32,7 @@ public class MifarePlugin extends CordovaPlugin {
         if (action.equals("readUID")) {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
-                    
+                    readUIDExecutor= Executors.newSingleThreadExecutor();
                     Future<String> future = readUIDExecutor.submit(new Callable() {
                         
                         public String call() throws Exception {
